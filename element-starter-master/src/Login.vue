@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <!-- 留坑，非常重要 -->
-        <router-view></router-view>
-    </div>
+  <div id="app">
+  Login
+  </div>
 </template>
+
 <script>
     export default {
         data(){
