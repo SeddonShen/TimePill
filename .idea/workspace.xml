@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="57386fe9-cc55-4c05-97ea-8a736ceecae5" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,12 +36,6 @@
         <option value="HTML File" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>form-login</find>
-      <find>send_mail</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -119,9 +131,9 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.slelct_cpic" />
-      <item itemvalue="Python.send_mail" />
       <item itemvalue="Django Server.TimePill" />
+      <item itemvalue="Python.send_mail" />
+      <item itemvalue="Python.slelct_cpic" />
     </list>
     <recent_temporary>
       <list>
@@ -143,29 +155,41 @@
       <updated>1555506352518</updated>
       <workItem from="1555506354951" duration="26956000" />
       <workItem from="1639118779637" duration="1826000" />
+      <workItem from="1639188028534" duration="3910000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
-    <state width="724" height="245" key="GridCell.Tab.0.bottom" timestamp="1639119696094">
+    <state width="721" height="245" key="GridCell.Tab.0.bottom" timestamp="1639191331244">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="724" height="245" key="GridCell.Tab.0.bottom/0.30.1536.834@0.30.1536.834" timestamp="1639119696094" />
-    <state width="724" height="245" key="GridCell.Tab.0.center" timestamp="1639119696094">
+    <state width="721" height="245" key="GridCell.Tab.0.bottom/0.30.1536.834@0.30.1536.834" timestamp="1639191331244" />
+    <state width="721" height="245" key="GridCell.Tab.0.center" timestamp="1639191331244">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="724" height="245" key="GridCell.Tab.0.center/0.30.1536.834@0.30.1536.834" timestamp="1639119696094" />
-    <state width="724" height="245" key="GridCell.Tab.0.left" timestamp="1639119696093">
+    <state width="721" height="245" key="GridCell.Tab.0.center/0.30.1536.834@0.30.1536.834" timestamp="1639191331244" />
+    <state width="721" height="245" key="GridCell.Tab.0.left" timestamp="1639191331244">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="724" height="245" key="GridCell.Tab.0.left/0.30.1536.834@0.30.1536.834" timestamp="1639119696093" />
-    <state width="724" height="245" key="GridCell.Tab.0.right" timestamp="1639119696094">
+    <state width="721" height="245" key="GridCell.Tab.0.left/0.30.1536.834@0.30.1536.834" timestamp="1639191331244" />
+    <state width="721" height="245" key="GridCell.Tab.0.right" timestamp="1639191331244">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="724" height="245" key="GridCell.Tab.0.right/0.30.1536.834@0.30.1536.834" timestamp="1639119696094" />
+    <state width="721" height="245" key="GridCell.Tab.0.right/0.30.1536.834@0.30.1536.834" timestamp="1639191331244" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/mysite$slelct_cpic.coverage" NAME="slelct_cpic Coverage Results" MODIFIED="1555603315990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop/CPIC-太保预算/python脚本工具/查询替换" />

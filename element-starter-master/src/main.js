@@ -7,6 +7,7 @@ import Login from './Login.vue'
 import Register from './Register.vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import Editor from './Editor.vue'
 
 Vue.use(ElementUI)
 Vue.use(VueRouter)
@@ -19,6 +20,7 @@ let router = new VueRouter({
       { path: '/home', component: Home },
       { path: '/login', component: Login },
       { path: '/reg', component: Register },
+	  { path: '/edit', component: Editor },
   ]
 });
 //new Vue 启动
