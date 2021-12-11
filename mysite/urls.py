@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from login import views
+from article.views import add_article,modify_article
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +26,7 @@ urlpatterns = [
     path('logout/', views.logout),
     path('captcha/',include('captcha.urls')),
     path('confirm/',views.user_confirm),
+    path('articles/',add_article),
+    path('articles/<int:art_id>',modify_article)
 
 ]
