@@ -10,7 +10,7 @@ class UserAdmin(admin.ModelAdmin):
         (None, {'fields': ['name']}),
         (None, {'fields': ['sex', 'email', 'c_time', 'has_confirmed']})
     ]
-    list_display = (['name', 'sex', 'email', 'c_time', 'has_confirmed'])  # add more columns.
+    list_display = (['id', 'name', 'sex', 'email', 'c_time', 'has_confirmed'])  # add more columns.
     search_fields = ['name']  # add search function.
 
 

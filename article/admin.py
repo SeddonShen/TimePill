@@ -10,7 +10,7 @@ class ArticleAdmin(admin.ModelAdmin):
         (None, {'fields': ['id']}),
         (None, {'fields': ['title', 'content', 'status']})
     ]
-    list_display = (['id', 'title', 'content', 'status'])
+    list_display = (['id', 'title', 'content', 'status', 'author_id'])
 
 
 admin.site.register(Article, ArticleAdmin)
