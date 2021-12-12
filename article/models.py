@@ -6,15 +6,15 @@ from login.models import User
 
 class Article(models.Model):
     id = models.AutoField(primary_key=True)
-    diary = (
-        ('pill', '胶囊日记'),
-        ('primary', '普通日记'),
-    )
-    diary_type = models.CharField(max_length=8, choices=diary, default='胶囊日记')
+    # diary = (
+    #     ('pill', '胶囊日记'),
+    #     ('primary', '普通日记'),
+    # )
+    # diary_type = models.CharField(max_length=8, choices=diary, default='胶囊日记')
     title = models.CharField(max_length=50)
     content = models.TextField()
-    # deleted alive
+    # # deleted alive
     square_open = models.BooleanField(default=False)
-    expire_time = models.DateTimeField()
-    status = models.CharField(max_length=10)  # 到期与否 用户不填
-    author_id = models.ForeignKey(User, to_field='id', on_delete=models.DO_NOTHING)
+    expire_time = models.DateTimeField(auto_now_add=True)
+    status = models.BooleanField(default=False)  # 到期与否 用户不填
+    # author_id = models.ForeignKey(User, to_field='id', on_delete=models.DO_NOTHING)
