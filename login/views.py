@@ -62,8 +62,18 @@ def login(request):
         # print(request.session.__dict__)
         user_id = request.session.get('user_id', None)
         user_name = request.session.get('user_name', None)
+        session_key = request.session.session_key
         # 'is_login': True, 'user_id': 9, 'user_name': 'seddon'}}
-        return JsonResponse({'request': 'Have Login', 'user_id': user_id, 'user_name': user_name})
+        response = JsonResponse({'request': 'Have Login', 'user_id': user_id, 'user_name': user_name, 'sessionid':session_key})
+        response["Access-Control-Allow-Origin"] = "http://127.0.0.1:8010"
+
+        response["Access-Control-Allow-Credentials"] = "true"
+
+        response["Access-Control-Allow-Methods"] = "*"
+        # response["Access-Control-Expose-Headers"] = ""
+        response["Access-Control-Allow-Headers"] = "*"
+
+        return response
     # date = {'flag': date_flag, 'msg': date_msg}
     if request.method == 'POST':
         login_form = UserForm(request.POST)
@@ -88,8 +98,11 @@ def login(request):
                 request.session['is_login'] = True
                 request.session['user_id'] = user.id
                 request.session['user_name'] = user.name
+                session_key = request.session.session_key
                 # return redirect('/index/')
-                return JsonResponse({'request': 'Login ok'})
+                # return JsonResponse(
+                #     {'request': 'Have Login', 'user_id': user_id, 'user_name': user_name, 'sessionid': session_key})
+                return JsonResponse({'request': 'Login ok', 'user_id': user.id, 'user_name': user.name, 'sessionid': session_key})
             else:
                 message = '密码不正确！'
                 return JsonResponse({'request': message})

@@ -13,16 +13,34 @@ Vue.use(ElementUI)
 Vue.use(VueRouter)
 // 路由参考文章
 // https://blog.csdn.net/sinat_17775997/article/details/80688397
+
+//SessionStorage
+//https://www.jianshu.com/p/2578cc444b70
+
+
 let router = new VueRouter({
   routes: [
       //一个个对象
-      { path: '/', component: Index },
-      { path: '/home', component: Home },
-      { path: '/login', component: Login },
-      { path: '/reg', component: Register },
-	  { path: '/edit', component: Editor },
+      { path: '/', component: Index ,meta:{needLogin:false}},
+      { path: '/home', component: Home ,meta:{needLogin:true}},
+      { path: '/login', component: Login ,meta:{needLogin:false}},
+      { path: '/reg', component: Register ,meta:{needLogin:false}},
+	  { path: '/edit', component: Editor ,meta:{needLogin:true}},
   ]
 });
+
+router.beforeEach((to,from,next)=>{
+	console.log(to)
+	if(to.meta.needLogin){
+		console.log("要登录")
+	}else{
+		console.log("无需登录")
+	}
+	next()
+})
+
+
+
 //new Vue 启动
 new Vue({
   el: '#app',

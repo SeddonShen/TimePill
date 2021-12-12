@@ -19,6 +19,7 @@
   <script>
 	  import axios from 'axios'
 	  import Qs from 'qs'
+	  axios.defaults.withCredentials = true; //让ajax携带cookie
     export default {
       data() {
         return {
@@ -45,18 +46,39 @@
 				const _this = this
 				var data = Qs.stringify({"username":this.ruleForm.account,"password":this.ruleForm.pass})
 				console.log(data)
+				console.log(axios.defaults.withCredentials)
 				axios.post("http://localhost:8000/login/",data).then(
 				  function (resp) {
+					var ses = window.sessionStorage
+					console.log(resp)
 					const result = resp.data.request
 					// const flag = resp.data.request['flag']
 					if (result == 'Login ok'){
 					  // console.log(resp.data.request['flag'])
 					  _this.$router.push("/home")
+					}else if(result == 'Have Login' ){
+						alert(result)
+						_this.$router.push("/home")
 					}else {
 					  alert(result)
 					}
 				  }
 				)
+				
+				
+				// axios.post("http://localhost:8000/login/",data).then(
+				//   function (resp) {
+				// 	console.log(resp)
+				// 	const result = resp.data.request
+				// 	// const flag = resp.data.request['flag']
+				// 	console.log(result)
+				//   }
+				// )
+				
+				
+				
+				
+				
 			  // alert('submit!');
             } else {
               console.log('error submit!!');

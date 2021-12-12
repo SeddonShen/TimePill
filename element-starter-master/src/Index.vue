@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import {store} from './store.js'
 export default {
   data() {
       return {
@@ -65,6 +66,7 @@ export default {
           "老宣勇敢飞，东东永相随!",
         duration: 1000,
       });
+	  console.log(store)
     },
     goTo(url){
     //直接跳转

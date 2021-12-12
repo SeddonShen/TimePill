@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -172,7 +175,7 @@
       <updated>1555506352518</updated>
       <workItem from="1555506354951" duration="26956000" />
       <workItem from="1639118779637" duration="1826000" />
-      <workItem from="1639188028534" duration="16151000" />
+      <workItem from="1639188028534" duration="24090000" />
     </task>
     <servers />
   </component>
@@ -203,30 +206,30 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1493" height="292" key="GridCell.Tab.0.bottom" timestamp="1639221313342">
+    <state width="724" height="199" key="GridCell.Tab.0.bottom" timestamp="1639275224656">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="1493" height="292" key="GridCell.Tab.0.bottom/0.30.1536.834@0.30.1536.834" timestamp="1639221313342" />
-    <state width="1493" height="292" key="GridCell.Tab.0.center" timestamp="1639221313342">
+    <state width="724" height="199" key="GridCell.Tab.0.bottom/0.30.1536.834@0.30.1536.834" timestamp="1639275224656" />
+    <state width="724" height="199" key="GridCell.Tab.0.center" timestamp="1639275224656">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="1493" height="292" key="GridCell.Tab.0.center/0.30.1536.834@0.30.1536.834" timestamp="1639221313342" />
-    <state width="1493" height="292" key="GridCell.Tab.0.left" timestamp="1639221313341">
+    <state width="724" height="199" key="GridCell.Tab.0.center/0.30.1536.834@0.30.1536.834" timestamp="1639275224656" />
+    <state width="724" height="199" key="GridCell.Tab.0.left" timestamp="1639275224656">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="1493" height="292" key="GridCell.Tab.0.left/0.30.1536.834@0.30.1536.834" timestamp="1639221313341" />
-    <state width="1493" height="292" key="GridCell.Tab.0.right" timestamp="1639221313342">
+    <state width="724" height="199" key="GridCell.Tab.0.left/0.30.1536.834@0.30.1536.834" timestamp="1639275224656" />
+    <state width="724" height="199" key="GridCell.Tab.0.right" timestamp="1639275224656">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="1493" height="292" key="GridCell.Tab.0.right/0.30.1536.834@0.30.1536.834" timestamp="1639221313342" />
+    <state width="724" height="199" key="GridCell.Tab.0.right/0.30.1536.834@0.30.1536.834" timestamp="1639275224656" />
     <state x="762" y="30" width="781" height="840" key="dock-window-1" timestamp="1639208303272">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state x="762" y="30" width="781" height="840" key="dock-window-1/0.30.1536.834@0.30.1536.834" timestamp="1639208303272" />
-    <state x="431" y="186" width="672" height="678" key="search.everywhere.popup" timestamp="1639220306670">
+    <state x="431" y="186" width="672" height="678" key="search.everywhere.popup" timestamp="1639222551059">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state x="431" y="186" width="672" height="678" key="search.everywhere.popup/0.30.1536.834@0.30.1536.834" timestamp="1639220306670" />
+    <state x="431" y="186" width="672" height="678" key="search.everywhere.popup/0.30.1536.834@0.30.1536.834" timestamp="1639222551059" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/mysite$slelct_cpic.coverage" NAME="slelct_cpic Coverage Results" MODIFIED="1555603315990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop/CPIC-太保预算/python脚本工具/查询替换" />

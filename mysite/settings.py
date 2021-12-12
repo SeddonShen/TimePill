@@ -65,6 +65,11 @@ CORS_ORIGIN_WHITELIST = (
 	'http://localhost:8000'
 )
 
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = 'None'
+
+
+
 CORS_ALLOW_METHODS = (
     'DELETE',
     'GET',
