@@ -48,6 +48,7 @@
 				axios.post("http://localhost:8000/login/",data).then(
 				  function (resp) {
 					const result = resp.data.request
+					console.log(resp)
 					// const flag = resp.data.request['flag']
 					if (result == 'Login ok'){
 					  // console.log(resp.data.request['flag'])
