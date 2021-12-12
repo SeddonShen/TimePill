@@ -14,6 +14,6 @@ class UserAdmin(admin.ModelAdmin):
     search_fields = ['name']  # add search function.
 
 
-admin.site.register(User, UserAdmin)
-# admin.site.register(models.User)
+# admin.site.register(User, UserAdmin)
+admin.site.register(models.User)
 admin.site.register(models.ConfirmString)
