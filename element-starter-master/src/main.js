@@ -33,6 +33,7 @@ router.beforeEach((to,from,next)=>{
 	console.log(to)
 	if(to.meta.needLogin){
 		console.log("要登录")
+		
 	}else{
 		console.log("无需登录")
 	}

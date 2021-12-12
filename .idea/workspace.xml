@@ -177,6 +177,7 @@
       <workItem from="1639118779637" duration="1826000" />
       <workItem from="1639188028534" duration="27334000" />
       <workItem from="1639290716382" duration="457000" />
+      <workItem from="1639296004952" duration="1785000" />
     </task>
     <servers />
   </component>
@@ -208,30 +209,30 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1493" height="201" key="GridCell.Tab.0.bottom" timestamp="1639279121086">
+    <state width="1493" height="55" key="GridCell.Tab.0.bottom" timestamp="1639296811494">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="1493" height="201" key="GridCell.Tab.0.bottom/0.30.1536.834@0.30.1536.834" timestamp="1639279121086" />
-    <state width="1493" height="201" key="GridCell.Tab.0.center" timestamp="1639279121086">
+    <state width="1493" height="55" key="GridCell.Tab.0.bottom/0.30.1536.834@0.30.1536.834" timestamp="1639296811494" />
+    <state width="1493" height="55" key="GridCell.Tab.0.center" timestamp="1639296811494">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="1493" height="201" key="GridCell.Tab.0.center/0.30.1536.834@0.30.1536.834" timestamp="1639279121086" />
-    <state width="1493" height="201" key="GridCell.Tab.0.left" timestamp="1639279121086">
+    <state width="1493" height="55" key="GridCell.Tab.0.center/0.30.1536.834@0.30.1536.834" timestamp="1639296811494" />
+    <state width="1493" height="55" key="GridCell.Tab.0.left" timestamp="1639296811494">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="1493" height="201" key="GridCell.Tab.0.left/0.30.1536.834@0.30.1536.834" timestamp="1639279121086" />
-    <state width="1493" height="201" key="GridCell.Tab.0.right" timestamp="1639279121086">
+    <state width="1493" height="55" key="GridCell.Tab.0.left/0.30.1536.834@0.30.1536.834" timestamp="1639296811494" />
+    <state width="1493" height="55" key="GridCell.Tab.0.right" timestamp="1639296811494">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state width="1493" height="201" key="GridCell.Tab.0.right/0.30.1536.834@0.30.1536.834" timestamp="1639279121086" />
+    <state width="1493" height="55" key="GridCell.Tab.0.right/0.30.1536.834@0.30.1536.834" timestamp="1639296811494" />
     <state x="762" y="30" width="781" height="840" key="dock-window-1" timestamp="1639208303272">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
     <state x="762" y="30" width="781" height="840" key="dock-window-1/0.30.1536.834@0.30.1536.834" timestamp="1639208303272" />
-    <state x="431" y="186" width="672" height="678" key="search.everywhere.popup" timestamp="1639222551059">
+    <state x="431" y="186" width="672" height="678" key="search.everywhere.popup" timestamp="1639296070036">
       <screen x="0" y="30" width="1536" height="834" />
     </state>
-    <state x="431" y="186" width="672" height="678" key="search.everywhere.popup/0.30.1536.834@0.30.1536.834" timestamp="1639222551059" />
+    <state x="431" y="186" width="672" height="678" key="search.everywhere.popup/0.30.1536.834@0.30.1536.834" timestamp="1639296070036" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/mysite$slelct_cpic.coverage" NAME="slelct_cpic Coverage Results" MODIFIED="1555603315990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop/CPIC-太保预算/python脚本工具/查询替换" />
