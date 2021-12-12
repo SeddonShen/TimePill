@@ -6,29 +6,24 @@
 </template>
 
 <script>
+	import axios from 'axios'
+	import Qs from 'qs'
+	axios.defaults.withCredentials = true; //让ajax携带cookie
     export default {
         data(){
             return {}
         },
 		created:function(){
 			console.log("NB")
+			axios.get("http://localhost:8000/articles/",'').then(
+			  function (resp) {
+				var ses = window.sessionStorage
+				console.log(resp)
+				const result = resp.data.request
+				// const flag = resp.data.request['flag']
+
+			  }
+			)
 		},
-		axios.post("http://localhost:8000/login/",data).then(
-		  function (resp) {
-			var ses = window.sessionStorage
-			console.log(resp)
-			const result = resp.data.request
-			// const flag = resp.data.request['flag']
-			if (result == 'Login ok'){
-			  // console.log(resp.data.request['flag'])
-			  _this.$router.push("/home")
-			}else if(result == 'Have Login' ){
-				alert(result)
-				_this.$router.push("/home")
-			}else {
-			  alert(result)
-			}
-		  }
-		)
     }
 </script>
