@@ -35,7 +35,7 @@
 					<span>我的日记</span>
 					<el-divider></el-divider>
 					<el-row :gutter="12">
-						<el-col :span="8" class="margin" v-for="article in squaredata">
+						<el-col :span="8" class="margin" v-for="article in myarticles">
 							<el-card class="box-card" shadow="hover">
 								<div slot="header" class="clearfix">
 									<span>{{article.title}}</span>
@@ -55,7 +55,7 @@
 					<span>我的胶囊</span>
 					<el-divider></el-divider>
 					<el-row :gutter="12">
-						<el-col :span="8" class="margin" v-for="(o, index) in 6" :key="o">
+						<el-col :span="8" class="margin" v-for="article in mypills">
 							<el-card class="box-card" shadow="hover">
 								<div slot="header" class="clearfix">
 									<span>卡片名称</span>
@@ -93,7 +93,9 @@
 		data() {
 			return {
 				activeIndex: '2',
-				squaredata:[]
+				squaredata:[],
+				myarticles:[],
+				mypills:[]
 			};
 		},
 		methods: {
@@ -107,11 +109,10 @@
 			var _this = this
 			axios.get("http://localhost:8000/articles/", '').then(
 				function(resp) {
-					var ses = window.sessionStorage
 					console.log(resp.data.articles)
 					const result = resp.data.articles
 					_this.squaredata = result
-					console.log(_this.squaredata[0].author)
+					// console.log(_this.squaredata[0].author)
 					// const flag = resp.data.request['flag']
 
 				}
@@ -120,7 +121,18 @@
 			axios.get("http://localhost:8000/myarticles/", '').then(
 				function(resp) {
 					console.log(resp.data)
+					console.log(resp.data.articles)
+					const result = resp.data.articles
+					_this.myarticles = result
+				}
+			)
 			
+			axios.get("http://localhost:8000/mypills/", '').then(
+				function(resp) {
+					console.log(resp.data)
+					console.log(resp.data.articles)
+					const result = resp.data.articles
+					_this.mypills = result
 				}
 			)
 			

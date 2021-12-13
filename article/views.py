@@ -3,6 +3,7 @@ from .models import Article
 from django.http import HttpResponse, JsonResponse
 from login.models import User
 from django.db.models import Q
+import django.utils.timezone as timezone
 import json
 
 
@@ -14,17 +15,57 @@ def add_article(request):
             print(request.session.get('user_name', None))
             req = json.loads(request.body)
             print(req)
-            key_flag = req.get("title") and req.get("content") and len(req) == 2
-            # 判断请求体是否正确
-            if key_flag:
-                title = req["title"]
-                content = req["content"]
-                '''插入数据'''
-                add_art = Article(title=title, content=content, status=True, author_id_id=user_id, diary_type = 'pill')
-                add_art.save()
-                return JsonResponse({"status": "200", "msg": "publish article success."})
+            print(len(req))
+            if req.get("diary_type") == "primary":
+                key_flag = req.get("title") and req.get("content") and len(req) == 4
+                if key_flag:
+                    title = req["title"]
+                    content = req["content"]
+                    square_open = req["square_open"]
+                    # expire_time = req["expire_time"]
+                    diary_type = req["diary_type"]
+                    status = True
+                    add_art = Article(
+                        title=title,
+                        content=content,
+                        square_open=square_open,
+                        # expire_time=expire_time,
+                        status=status,
+                        author_id_id=user_id,
+                        diary_type=diary_type,
+                        # add_date=timezone.now,
+                        # mod_date=timezone.now
+                    )
+                    add_art.save()
+                    return JsonResponse({"status": "200", "msg": "publish article success."})
+                else:
+                    return JsonResponse({"status": "400", "msg": "please check param."})
             else:
-                return JsonResponse({"status": "400", "msg": "please check param."})
+                key_flag = req.get("title") and req.get("content") and len(req) == 5
+                if key_flag:
+                    title = req["title"]
+                    content = req["content"]
+                    square_open = req["square_open"]
+                    expire_time = req["expire_time"]
+                    diary_type = req["diary_type"]
+                    '''插入数据'''
+                    status = False
+                    add_art = Article(
+                        title=title,
+                        content=content,
+                        square_open=square_open,
+                        expire_time=expire_time,
+                        status=status,
+                        author_id_id=user_id,
+                        diary_type=diary_type,
+                        # add_date=timezone.now,
+                        # mod_date=timezone.now
+                    )
+                    add_art.save()
+                    return JsonResponse({"status": "200", "msg": "publish pill success."})
+                else:
+                    return JsonResponse({"status": "400", "msg": "please check param."})
+            # 判断请求体是否正确
         else:
             return JsonResponse({"status": "404", "msg": "please log in."})
     # 查询所有文章和状态
@@ -34,7 +75,8 @@ def add_article(request):
             print(user_id)
             print(request.session.get('user_name', None))
             articles = []
-            query_art = Article.objects.all()
+            query_art = Article.objects.filter(Q(square_open=True) &Q(status=True))
+            # query_art = Article.objects.all()
             for article in query_art:
                 article_dict = {'id': article.id, 'title': article.title, 'content': article.content,
                                 'status': article.status, 'author': article.author_id.name}
@@ -141,8 +183,12 @@ def mypills(request):
             query_art = Article.objects.filter(Q(author_id=user_id) & Q(diary_type='pill'))
             # print(query_art.__dict__)
             for article in query_art:
-                article_dict = {'id': article.id, 'title': article.title, 'content': article.content,
-                                'status': article.status, 'author': article.author_id.name}
+                if(article.status):
+                    article_dict = {'id': article.id, 'title': article.title, 'content': article.content,
+                                    'status': article.status, 'author': article.author_id.name}
+                else:
+                    article_dict = {'id': article.id, 'title': '未解封的胶囊', 'content': '耐心等待',
+                                    'status': article.status, 'author': article.author_id.name}
                 articles.append(article_dict)
             return JsonResponse({"status": "200", "articles": articles, "msg": "query user articles success."}, safe=False)
         else:

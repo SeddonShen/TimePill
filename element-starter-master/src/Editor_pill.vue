@@ -121,16 +121,24 @@
 				  title: "提交成功",
 				  type: "success",
 				  message:
-				    "新日记已生成!",
-				  duration: 2000,
+				    "新胶囊已生成!",
+				  duration: 5000,
 				});
-				var data = {"title":this.ruleForm.name,"content":this.ruleForm.content}
+				var data = {
+					"title":this.ruleForm.name,
+					"content":this.ruleForm.content,
+					"square_open":this.ruleForm.isopen,
+					"expire_time":date3,
+					"diary_type":'pill',
+					}
 				console.log(data)
+				var _this = this
 				console.log(axios.defaults.withCredentials)
 				axios.post("http://localhost:8000/articles/",data).then(
 				  function (resp) {
 					var ses = window.sessionStorage
 					console.log(resp)
+					_this.$router.push('/home');
 					// const result = resp.data.request
 					// // const flag = resp.data.request['flag']
 					// if (result == 'Login ok'){
