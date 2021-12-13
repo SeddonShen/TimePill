@@ -20,7 +20,7 @@ def add_article(request):
                 title = req["title"]
                 content = req["content"]
                 '''插入数据'''
-                add_art = Article(title=title, content=content, status="alive", author_id_id=user_id)
+                add_art = Article(title=title, content=content, status=True, author_id_id=user_id, diary_type = 'pill')
                 add_art.save()
                 return JsonResponse({"status": "200", "msg": "publish article success."})
             else:

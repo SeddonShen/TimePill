@@ -7,7 +7,8 @@ import Login from './Login.vue'
 import Register from './Register.vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import Editor from './Editor.vue'
+import Editor_pill from './Editor_pill.vue'
+import Editor_pre from './Editor_pre.vue'
 
 Vue.use(ElementUI)
 Vue.use(VueRouter)
@@ -25,7 +26,8 @@ let router = new VueRouter({
       { path: '/home', component: Home ,meta:{needLogin:true}},
       { path: '/login', component: Login ,meta:{needLogin:false}},
       { path: '/reg', component: Register ,meta:{needLogin:false}},
-	  { path: '/edit', component: Editor ,meta:{needLogin:true}},
+	  { path: '/edit_pre', component: Editor_pre ,meta:{needLogin:true}},
+	  { path: '/edit_pill', component: Editor_pill ,meta:{needLogin:true}}
   ]
 });
 
