@@ -61,6 +61,7 @@
     data() {
       return {
 		activeIndex: '0',
+		id:'',
         ruleForm: {
           name: '',
           date1: '',
@@ -92,6 +93,25 @@
         }
       };
     },
+	created:function() {
+		// typeof x === "undefined"
+		this.id = this.$route.params.id
+		if(typeof this.id == "undefined"){
+			console.log('在新建文章')
+		}else{
+			console.log('修改文章' + this.id)
+			axios.get("http://localhost:8000/pilldetail/" + this.id, '').then(
+				function(resp) {
+					console.log(resp.data)
+					// _this.article = resp.data.article
+					// console.log(resp.data.articles)
+					// const result = resp.data.articles
+					// _this.article = result
+				}
+			)
+		}
+		// console.log(this.id)
+	},
     methods: {
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
