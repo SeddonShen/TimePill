@@ -29,7 +29,9 @@ let router = new VueRouter({
       { path: '/login', component: Login ,meta:{needLogin:false}},
       { path: '/reg', component: Register ,meta:{needLogin:false}},
 	  { path: '/edit_pre', component: Editor_pre ,meta:{needLogin:true}},
+	  { path: '/edit_pre/:id', component: Editor_pre ,meta:{needLogin:true}},
 	  { path: '/edit_pill', component: Editor_pill ,meta:{needLogin:true}},
+	  { path: '/edit_pill/:id', component: Editor_pill ,meta:{needLogin:true}},
 	  { path: '/article/:id', component: Article ,meta:{needLogin:true}},
 	  { path: '/pill/:id', component: Pill ,meta:{needLogin:true}}
   ]

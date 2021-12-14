@@ -10,6 +10,10 @@
 			<el-main>
 				
 				<el-descriptions class="margin-top" :column="3" border>
+						<template slot="extra">
+					      <el-button type="primary" size="small" @click="toArticle(article.id)">编辑</el-button>
+					      <el-button type="danger" size="small" @click="art_delete(article.id)" >删除</el-button>
+					    </template>
 					<el-descriptions-item>
 						<template slot="label">
 							<i class="el-icon-user"></i>
@@ -19,37 +23,39 @@
 					</el-descriptions-item>
 					<el-descriptions-item>
 						<template slot="label">
-							<i class="el-icon-mobile-phone"></i>
+							<i class="el-icon-reading"></i>
 							文章ID
 						</template>
 						{{article.id}}
 					</el-descriptions-item>
 					<el-descriptions-item>
 						<template slot="label">
-							<i class="el-icon-location-outline"></i>
+							<i class="el-icon-notebook-1"></i>
 							日记类型
 						</template>
-						{{article.diary_type == 'pill' ? '胶囊日记' : '2'}}
+						{{article.diary_type == 'pill' ? '胶囊日记' : '普通日记'}}
 					</el-descriptions-item>
 					<el-descriptions-item>
 						<template slot="label">
-							<i class="el-icon-tickets"></i>
+							<i class="el-icon-date"></i>
 							到期公开
 						</template>
-						<el-tag size="small">{{article.square_open ? '公开' : '不公开'}}</el-tag>
+						<el-tag size="small" type="success" v-if="article.square_open">公开</el-tag>
+						<el-tag size="small" type="danger" v-if="!article.square_open">不公开</el-tag>
 					</el-descriptions-item>
 					<el-descriptions-item>
 						<template slot="label">
-							<i class="el-icon-office-building"></i>
-							解封时间
+							<i class="el-icon-date"></i>
+							时间周期
 						</template>
-						{{article.expire_time}}
+						{{article.add_date}} ~ {{article.expire_time}}
 					</el-descriptions-item>
 				</el-descriptions>
+				
 				<div style="padding: 20px;">
 					<div style="font-size: 30px; text-align: center;">{{article.title}}</div>
 				</div>
-				{{article.square_open ? '' : 'text-align: center;'}}
+				<!-- {{article.square_open ? '' : 'text-align: center;'}} -->
 				<div style="text-align: center;" v-if="!article.status">
 					<!-- content -->
 					{{article.content}}
@@ -73,6 +79,8 @@
 	#app {
 		/* font-family: Helvetica, sans-serif; */
 		font-family: "PingFang SC";
+	}
+	.bg-footer{
 		text-align: center;
 	}
 </style>
@@ -98,6 +106,31 @@
 			toArticle(url) {
 				// this.$router.push(url)
 				console.log(url)
+				this.$router.push("/edit_pill/" + url);
+			},
+			art_delete(id){
+				        this.$confirm('此操作将永久删除该日记, 是否继续?', '提示', {
+				          confirmButtonText: '确定',
+				          cancelButtonText: '取消',
+				          type: 'warning'
+				        }).then(() => {
+							// modify_article
+						axios.delete("http://localhost:8000/articles/"+ this.id,'').then(
+						  function (resp) {
+							console.log(resp)
+						  }
+						)
+						this.$router.push("/home")
+				          this.$message({
+				            type: 'success',
+				            message: '删除成功!'
+				          });
+				        }).catch(() => {
+				          this.$message({
+				            type: 'info',
+				            message: '已取消删除'
+				          });          
+				        });
 			}
 		},
 		created: function() {

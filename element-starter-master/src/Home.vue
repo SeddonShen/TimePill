@@ -19,7 +19,9 @@
 									<span>{{article.title}}</span>
 									<el-button style="float: right; padding: 3px 0" type="text" @click="toArticle(article.diary_type,article.id)">查看详情</el-button>
 								</div>
-								<el-tag>胶囊日记</el-tag>
+								<!-- <el-tag>{{article.diary_type == 'pill' ? '普通日记' : '胶囊日记'}}</el-tag> -->
+								<el-tag size="small" v-if="article.diary_type == 'pill' ">胶囊日记</el-tag>
+								<el-tag size="small" type="success" v-if="article.diary_type !== 'pill' ">普通日记</el-tag>
 								<div class="text item">
 									{{article.content}}
 								</div>
@@ -39,12 +41,16 @@
 							<el-card class="box-card" shadow="hover">
 								<div slot="header" class="clearfix">
 									<span>{{article.title}}</span>
-									<el-button style="float: right; padding: 3px 0" type="text">查看详情</el-button>
+									<el-button style="float: right; padding: 3px 0" type="text" @click="toArticle(article.diary_type,article.id)">查看详情</el-button>
 								</div>
-								<el-tag type="success">普通日记</el-tag>
-								<div v-for="o in 4" :key="o" class="text item">
-									{{'列表内容 ' + o }}
-									
+								<!-- <el-tag>{{article.diary_type == 'pill' ? '普通日记' : '胶囊日记'}}</el-tag> -->
+								<el-tag size="small" v-if="article.diary_type == 'pill' ">胶囊日记</el-tag>
+								<el-tag size="small" type="success" v-if="article.diary_type !== 'pill' ">普通日记</el-tag>
+								<div class="text item">
+									{{article.content}}
+								</div>
+								<div class="text item">
+									{{article.author}}
 								</div>
 							</el-card>
 						</el-col>
@@ -58,13 +64,17 @@
 						<el-col :span="8" class="margin" v-for="article in mypills">
 							<el-card class="box-card" shadow="hover">
 								<div slot="header" class="clearfix">
-									<span>卡片名称</span>
-									<el-button style="float: right; padding: 3px 0" type="text">查看详情</el-button>
+									<span>{{article.title}}</span>
+									<el-button style="float: right; padding: 3px 0" type="text" @click="toArticle(article.diary_type,article.id)">查看详情</el-button>
 								</div>
-								<el-tag type="success">普通日记</el-tag>
-								<div v-for="o in 4" :key="o" class="text item">
-									{{'列表内容 ' + o }}
-									
+								<!-- <el-tag>{{article.diary_type == 'pill' ? '普通日记' : '胶囊日记'}}</el-tag> -->
+								<el-tag size="small" v-if="article.diary_type == 'pill' ">胶囊日记</el-tag>
+								<el-tag size="small" type="success" v-if="article.diary_type !== 'pill' ">普通日记</el-tag>
+								<div class="text item">
+									{{article.content}}
+								</div>
+								<div class="text item">
+									{{article.author}}
 								</div>
 							</el-card>
 						</el-col>
@@ -85,6 +95,8 @@
 	#app {
 		/* font-family: Helvetica, sans-serif; */
 		font-family: "PingFang SC";
+	}
+	.bg-footer{
 		text-align: center;
 	}
 </style>
