@@ -2,73 +2,61 @@
 	<div id="app">
 		<el-container>
 			<el-header>
-
 				<el-menu :default-active="activeIndex" mode="horizontal">
 					<el-menu-item index="1" @click="goTo('/')">首页</el-menu-item>
 					<el-menu-item index="2" @click="goTo('home')">胶囊广场</el-menu-item>
 				</el-menu>
 			</el-header>
 			<el-main>
-				<div>
-					<span>日记广场</span>
-					<el-divider></el-divider>
-					<el-row :gutter="12">
-						<el-col :span="8" class="margin" v-for="article in squaredata">
-							<el-card class="box-card" shadow="hover">
-								<div slot="header" class="clearfix">
-									<span>{{article.title}}</span>
-									<el-button style="float: right; padding: 3px 0" type="text" @click="toArticle(article.id)">查看详情</el-button>
-								</div>
-								<el-tag>胶囊日记</el-tag>
-								<div class="text item">
-									{{article.content}}
-								</div>
-								<div class="text item">
-									{{article.author}}
-								</div>
-							</el-card>
-						</el-col>
-					</el-row>
-				</div>
 				
-				<div style="padding-top: 5%;">
-					<span>我的日记</span>
-					<el-divider></el-divider>
-					<el-row :gutter="12">
-						<el-col :span="8" class="margin" v-for="article in myarticles">
-							<el-card class="box-card" shadow="hover">
-								<div slot="header" class="clearfix">
-									<span>{{article.title}}</span>
-									<el-button style="float: right; padding: 3px 0" type="text">查看详情</el-button>
-								</div>
-								<el-tag type="success">普通日记</el-tag>
-								<div v-for="o in 4" :key="o" class="text item">
-									{{'列表内容 ' + o }}
-									
-								</div>
-							</el-card>
-						</el-col>
-					</el-row>
+				<el-descriptions class="margin-top" :column="3" border>
+					<el-descriptions-item>
+						<template slot="label">
+							<i class="el-icon-user"></i>
+							记录人
+						</template>
+						{{article.author}}
+					</el-descriptions-item>
+					<el-descriptions-item>
+						<template slot="label">
+							<i class="el-icon-mobile-phone"></i>
+							文章ID
+						</template>
+						{{article.id}}
+					</el-descriptions-item>
+					<el-descriptions-item>
+						<template slot="label">
+							<i class="el-icon-location-outline"></i>
+							日记类型
+						</template>
+						{{article.diary_type == 'pill' ? '胶囊日记' : '2'}}
+					</el-descriptions-item>
+					<el-descriptions-item>
+						<template slot="label">
+							<i class="el-icon-tickets"></i>
+							到期公开
+						</template>
+						<el-tag size="small">{{article.square_open ? '公开' : '不公开'}}</el-tag>
+					</el-descriptions-item>
+					<el-descriptions-item>
+						<template slot="label">
+							<i class="el-icon-office-building"></i>
+							解封时间
+						</template>
+						{{article.expire_time}}
+					</el-descriptions-item>
+				</el-descriptions>
+				<div style="padding: 20px;">
+					<div style="font-size: 30px; text-align: center;">{{article.title}}</div>
 				</div>
-
-				<div style="padding-top: 5%;">
-					<span>我的胶囊</span>
-					<el-divider></el-divider>
-					<el-row :gutter="12">
-						<el-col :span="8" class="margin" v-for="article in mypills">
-							<el-card class="box-card" shadow="hover">
-								<div slot="header" class="clearfix">
-									<span>卡片名称</span>
-									<el-button style="float: right; padding: 3px 0" type="text">查看详情</el-button>
-								</div>
-								<el-tag type="success">普通日记</el-tag>
-								<div v-for="o in 4" :key="o" class="text item">
-									{{'列表内容 ' + o }}
-									
-								</div>
-							</el-card>
-						</el-col>
-					</el-row>
+				{{article.square_open ? '' : 'text-align: center;'}}
+				<div style="text-align: center;" v-if="!article.status">
+					<!-- content -->
+					{{article.content}}
+				</div>
+				<div style="text-indent:2em ;" v-if="article.status">
+					<!-- content -->
+					{{article.content}}
 				</div>
 			</el-main>
 			<el-footer class="bg-footer">
@@ -82,6 +70,11 @@
 	.margin {
 		margin-top: 2%;
 	}
+	#app {
+		/* font-family: Helvetica, sans-serif; */
+		font-family: "PingFang SC";
+		text-align: center;
+	}
 </style>
 
 
@@ -93,9 +86,8 @@
 		data() {
 			return {
 				activeIndex: '2',
-				squaredata:[],
-				myarticles:[],
-				mypills:[]
+				id: '',
+				article: [],
 			};
 		},
 		methods: {
@@ -103,7 +95,7 @@
 				//直接跳转
 				this.$router.push(url);
 			},
-			toArticle(url){
+			toArticle(url) {
 				// this.$router.push(url)
 				console.log(url)
 			}
@@ -111,35 +103,21 @@
 		created: function() {
 			console.log("NB")
 			var _this = this
-			axios.get("http://localhost:8000/articles/", '').then(
-				function(resp) {
-					console.log(resp.data.articles)
-					const result = resp.data.articles
-					_this.squaredata = result
-					// console.log(_this.squaredata[0].author)
-					// const flag = resp.data.request['flag']
+			// this.id = this.$route.params.id;
+			// this.myName=this.$route.params.name;
+			this.id = this.$route.params.id
+			console.log(this.id)
+			console.log(this.$route.params.id)
 
-				}
-			)
-			
-			axios.get("http://localhost:8000/myarticles/", '').then(
+			axios.get("http://localhost:8000/pilldetail/" + this.id, '').then(
 				function(resp) {
 					console.log(resp.data)
-					console.log(resp.data.articles)
-					const result = resp.data.articles
-					_this.myarticles = result
+					_this.article = resp.data.article
+					// console.log(resp.data.articles)
+					// const result = resp.data.articles
+					// _this.article = result
 				}
 			)
-			
-			axios.get("http://localhost:8000/mypills/", '').then(
-				function(resp) {
-					console.log(resp.data)
-					console.log(resp.data.articles)
-					const result = resp.data.articles
-					_this.mypills = result
-				}
-			)
-			
 		},
 	}
 </script>

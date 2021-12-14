@@ -15,7 +15,13 @@
   </el-form>
   </div>
 </template>
-
+<style>
+	#app {
+		/* font-family: Helvetica, sans-serif; */
+		font-family: "PingFang SC";
+		text-align: center;
+	}
+</style>
   <script>
 	  import axios from 'axios'
 	  import Qs from 'qs'

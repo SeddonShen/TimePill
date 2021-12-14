@@ -82,6 +82,11 @@
 	.margin {
 		margin-top: 2%;
 	}
+	#app {
+		/* font-family: Helvetica, sans-serif; */
+		font-family: "PingFang SC";
+		text-align: center;
+	}
 </style>
 
 
