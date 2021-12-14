@@ -79,7 +79,7 @@ def add_article(request):
             # query_art = Article.objects.all()
             for article in query_art:
                 article_dict = {'id': article.id, 'title': article.title, 'content': article.content,
-                                'status': article.status, 'author': article.author_id.name}
+                                'status': article.status, 'author': article.author_id.name, 'diary_type':article.diary_type}
                 articles.append(article_dict)
             return JsonResponse({"status": "200", "articles": articles, "msg": "query articles success."}, safe=False)
         else:
@@ -191,6 +191,51 @@ def mypills(request):
                                     'status': article.status, 'author': article.author_id.name}
                 articles.append(article_dict)
             return JsonResponse({"status": "200", "articles": articles, "msg": "query user articles success."}, safe=False)
+        else:
+            return JsonResponse({"status": "404", "msg": "please log in."})
+    return JsonResponse({"status": "405", "msg": "unknown error."})
+
+
+def articledetail(request, art_id):
+    print('method:',request.method)
+
+    # GET请求获取信息
+    if request.method == "GET":
+        if request.session.get('is_login', None):
+            user_id = request.session.get('user_id', None)
+            print(user_id)
+            article = Article.objects.get(id=art_id)
+            if user_id == article.author_id.id:
+                print(request.session.get('user_name', None))
+                article_dict = {'id': article.id, 'title': article.title, 'content': article.content,
+                                'status': article.status, 'author': article.author_id.name}
+                return JsonResponse({"status": "200", "article": article_dict, "msg": "list article detail success."},
+                                    safe=False)
+            else:
+                return JsonResponse({"status": "406", "msg": "not your article."})
+
+        else:
+            return JsonResponse({"status": "404", "msg": "please log in."})
+    return JsonResponse({"status": "405", "msg": "unknown error."})
+
+def pilldetail(request, art_id):
+    print('method:',request.method)
+
+    # GET请求获取信息
+    if request.method == "GET":
+        if request.session.get('is_login', None):
+            user_id = request.session.get('user_id', None)
+            print(user_id)
+            article = Article.objects.get(id=art_id)
+            if user_id == article.author_id.id:
+                print(request.session.get('user_name', None))
+                article_dict = {'id': article.id, 'title': article.title, 'content': article.content,
+                                'status': article.status, 'author': article.author_id.name}
+                return JsonResponse({"status": "200", "article": article_dict, "msg": "list article detail success."},
+                                    safe=False)
+            else:
+                return JsonResponse({"status": "406", "msg": "not your article."})
+
         else:
             return JsonResponse({"status": "404", "msg": "please log in."})
     return JsonResponse({"status": "405", "msg": "unknown error."})

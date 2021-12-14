@@ -17,7 +17,7 @@
 							<el-card class="box-card" shadow="hover">
 								<div slot="header" class="clearfix">
 									<span>{{article.title}}</span>
-									<el-button style="float: right; padding: 3px 0" type="text" @click="toArticle(article.diary_type,article.id)">查看详情</el-button>
+									<el-button style="float: right; padding: 3px 0" type="text" @click="toArticle(article.id)">查看详情</el-button>
 								</div>
 								<el-tag>胶囊日记</el-tag>
 								<div class="text item">
@@ -103,23 +103,9 @@
 				//直接跳转
 				this.$router.push(url);
 			},
-			toArticle(type,url){
+			toArticle(url){
 				// this.$router.push(url)
-				console.log(type)
 				console.log(url)
-				if(type == 'primary'){
-					this.$router.push("/article/" + url);
-				}else if(type == 'pill'){
-					this.$router.push("/pill/" + url);
-				}else{
-					this.$notify({
-					  title: "数据错误",
-					  type: "error",
-					  message:
-					    "日记数据读取出错!",
-					  duration: 2000,
-					});
-				}
 			}
 		},
 		created: function() {

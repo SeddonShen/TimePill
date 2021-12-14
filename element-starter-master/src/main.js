@@ -9,6 +9,8 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import Editor_pill from './Editor_pill.vue'
 import Editor_pre from './Editor_pre.vue'
+import Article from './Article.vue'
+import Pill from './Pill.vue'
 
 Vue.use(ElementUI)
 Vue.use(VueRouter)
@@ -27,7 +29,9 @@ let router = new VueRouter({
       { path: '/login', component: Login ,meta:{needLogin:false}},
       { path: '/reg', component: Register ,meta:{needLogin:false}},
 	  { path: '/edit_pre', component: Editor_pre ,meta:{needLogin:true}},
-	  { path: '/edit_pill', component: Editor_pill ,meta:{needLogin:true}}
+	  { path: '/edit_pill', component: Editor_pill ,meta:{needLogin:true}},
+	  { path: '/article/:id', component: Article ,meta:{needLogin:true}},
+	  { path: '/pill/:id', component: Pill ,meta:{needLogin:true}}
   ]
 });
 
