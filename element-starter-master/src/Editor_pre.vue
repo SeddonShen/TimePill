@@ -60,6 +60,7 @@
   export default {
     data() {
       return {
+		is_edit:false,
 		activeIndex: '0',
 		id:'',
         ruleForm: {
@@ -68,7 +69,7 @@
           date2: '',
           isopen: false,
           content: '',
-		  dairy_type: 'pill'
+		  dairy_type: 'primary'
         },
         rules: {
           name: [
@@ -100,9 +101,16 @@
 			console.log('在新建文章')
 		}else{
 			console.log('修改文章' + this.id)
+			var _this = this
 			axios.get("http://localhost:8000/pilldetail/" + this.id, '').then(
 				function(resp) {
 					console.log(resp.data)
+					_this.is_edit = true
+					_this.ruleForm.name = resp.data.article.title
+					_this.ruleForm.isopen = resp.data.article.square_open
+					_this.ruleForm.name = resp.data.article.title
+					_this.ruleForm.content = resp.data.article.content
+					// console.log(_this.is_edit)
 					// _this.article = resp.data.article
 					// console.log(resp.data.articles)
 					// const result = resp.data.articles
@@ -114,45 +122,70 @@
 	},
     methods: {
       submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-				console.log(this.ruleForm)
-				this.$notify({
-				  title: "提交成功",
-				  type: "success",
-				  message:
-				    "新日记已生成!",
-				  duration: 5000,
-				});
-				var data = {
-					"title":this.ruleForm.name,
-					"content":this.ruleForm.content,
-					"square_open":this.ruleForm.isopen,
-					// "expire_time":date3,
-					"diary_type":'primary',
-					}
-				console.log(data)
-				var _this = this
-				console.log(axios.defaults.withCredentials)
-				axios.post("http://localhost:8000/articles/",data).then(
-				  function (resp) {
-					var ses = window.sessionStorage
-					console.log(resp)
-					_this.$router.push('/home');
-				  }
-				)
-          } else {
-            console.log('error submit!!');
+		if(this.is_edit){
+			// articles
+			var data = {
+				"title":this.ruleForm.name,
+				"content":this.ruleForm.content,
+				"square_open":this.ruleForm.isopen,
+				// "expire_time":date3,
+				"diary_type":'primary',
+			}
+			axios.post("http://localhost:8000/articles/"+ this.id,data).then(
+			  function (resp) {
+				var ses = window.sessionStorage
+				console.log(resp)
+				// _this.$router.push('/home');
+			  }
+			)
 			this.$notify({
-			  title: "提交错误",
-			  type: "error",
+			  title: "修改成功",
+			  type: "success",
 			  message:
-			    "请检查表单项是否全部填写!",
-			  duration: 2000,
+			    "日记已修改!",
+			  duration: 5000,
 			});
-            return false;
-          }
-        });
+		}else{
+			this.$refs[formName].validate((valid) => {
+			  if (valid) {
+					console.log(this.ruleForm)
+					this.$notify({
+					  title: "提交成功",
+					  type: "success",
+					  message:
+					    "新日记已生成!",
+					  duration: 5000,
+					});
+					var data = {
+						"title":this.ruleForm.name,
+						"content":this.ruleForm.content,
+						"square_open":this.ruleForm.isopen,
+						// "expire_time":date3,
+						"diary_type":'primary',
+						}
+					console.log(data)
+					var _this = this
+					console.log(axios.defaults.withCredentials)
+					axios.post("http://localhost:8000/articles/",data).then(
+					  function (resp) {
+						var ses = window.sessionStorage
+						console.log(resp)
+						_this.$router.push('/home');
+					  }
+					)
+			  } else {
+			    console.log('error submit!!');
+				this.$notify({
+				  title: "提交错误",
+				  type: "error",
+				  message:
+				    "请检查表单项是否全部填写!",
+				  duration: 2000,
+				});
+			    return false;
+			  }
+			});
+		}
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();

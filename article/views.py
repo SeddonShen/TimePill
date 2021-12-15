@@ -91,6 +91,7 @@ def add_article(request):
 def modify_article(request, art_id):
     print('ssd', request.method)
     print('modify_article')
+    print(request.method,art_id)
     if request.method == "POST":
         if request.session.get('is_login', None):
             user_id = request.session.get('user_id', None)
@@ -99,16 +100,22 @@ def modify_article(request, art_id):
             req = json.loads(request.body)
             try:
                 article = Article.objects.get(id=art_id)
-                key_flag = req.get("title") and req.get("content") and len(req) == 2
+                key_flag = req.get("title") and req.get("content") and len(req) == 4
+                print(len(req))
                 if user_id == article.author_id.id:
+                    print('hello0')
                     if key_flag:
+                        print('hello1')
                         title = req["title"]
                         content = req["content"]
+                        square_open = req["square_open"]
                         '''更新数据'''
                         article = Article.objects.get(id=art_id)
                         article.title = title
                         article.content = content
+                        article.square_open = square_open
                         article.save()
+                        print('hello2')
                         return JsonResponse({"status": "200", "msg": "modify article success."})
                 else:
                     return JsonResponse({"status": "406", "msg": "not your article."})
