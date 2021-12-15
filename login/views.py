@@ -196,11 +196,13 @@ def user_confirm(request):
 def logout(request):
     if not request.session.get('is_login', None):
         # 如果本来就未登录，也就没有登出一说
-        return redirect("/login/")
+        # return redirect("/login/")
+        return JsonResponse({'request': 'please login'})
 
     request.session.flush()
+    return JsonResponse({'request': 'logout success'})
     # 或者使用下面的方法清除缓存数据
     # del request.session['is_login']
     # del request.session['user_id']
     # del request.session['user_name']
-    return redirect("/login/")
+    # return redirect("/login/")

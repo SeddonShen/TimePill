@@ -1,16 +1,19 @@
 //store.js
 export const store = {
     state: {
-        todos: [
-            {text: '写语文作业', done: false},
-            {text: '做数学卷子', done: false}
-        ]
+		is_login:false,
+		username:""
+        // todos: [
+        //     {text: '写语文作业', done: false},
+        //     {text: '做数学卷子', done: false}
+        // ]
     },
-    addTodo(str){
-        const obj = {text: str, done: false}
-        this.state.todos.push(obj)
+    set_login(username){
+		this.state.is_login = true
+		this.state.username = username
     },
-    setDone(index){
-        this.state.todos[index].done = true
+    logout(){
+		this.state.is_login = false
+		this.state.username = ''
     }
 }

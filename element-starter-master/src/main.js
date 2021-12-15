@@ -13,7 +13,8 @@ import Article from './Article.vue'
 import Pill from './Pill.vue'
 import comment from 'bright-comment'
 // import comment from 'hbl-comment'
-
+import axios from 'axios'
+axios.defaults.withCredentials = true; //让ajax携带cookie
 
 Vue.use(ElementUI)
 Vue.use(VueRouter)
@@ -44,11 +45,24 @@ router.beforeEach((to,from,next)=>{
 	console.log(to)
 	if(to.meta.needLogin){
 		console.log("要登录")
-		
+		var _this = this
+		axios.post("http://localhost:8000/login/", '').then(
+			function(resp) {
+				console.log(resp.data)
+				console.log("122222222222222222222222")
+			  if(resp.data.request == 'Have Login'){
+				next()
+			  }else{
+				  alert('未登录')
+			  }
+				// _this.set_user_id(resp.data.user_id)
+			}
+		)
+
 	}else{
 		console.log("无需登录")
+		next()
 	}
-	next()
 })
 
 

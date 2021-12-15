@@ -2,13 +2,23 @@
 	<div id="app">
 		<el-container>
 			<el-header>
-				<el-menu :default-active="activeIndex" mode="horizontal">
-					<el-menu-item index="0"><i class="el-icon-edit"></i>创建胶囊</el-menu-item>
+				<el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
+					<el-menu-item>
+						<div class="index-title"><i class="el-icon-edit"></i>时光胶囊</div>
+					</el-menu-item>
+					
 					<el-menu-item index="1" @click="goTo('/')">首页</el-menu-item>
 					<el-menu-item index="2" @click="goTo('home')">胶囊广场</el-menu-item>
+					<el-menu-item index="3" @click="goTo('edit_pre')">写日记</el-menu-item>
+					<el-menu-item index="4" @click="goTo('edit_pill')">写胶囊</el-menu-item>
+					<el-menu-item index="5" @click="goTo('reg')" v-if="!islogin">注册</el-menu-item>
+					<el-menu-item index="6" @click="goTo('login')" v-if="!islogin">登录</el-menu-item>
+					<el-menu-item index="7" @click="" v-if="islogin">Hello,{{username}}!</el-menu-item>
+					<el-menu-item index="8" @click="logout()" v-if="islogin">登出</el-menu-item>
 				</el-menu>
 			</el-header>
 			<el-main>
+				
 <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
   <el-form-item label="日记标题" prop="name">
     <el-input v-model="ruleForm.name"></el-input>
@@ -48,7 +58,7 @@
 			</el-main>
 
 			<el-footer class="bg-footer">
-				<div class="footer-title">时光胶囊 © 2021 - 2021 All Copyright reserved</div>
+				<div class="footer-title">时光胶囊 © 2021 - 2021 All Copyright reserved {{islogin}}</div>
 			</el-footer>
 		</el-container>
 	</div>
@@ -60,14 +70,16 @@
   export default {
     data() {
       return {
-		activeIndex: '0',
+		activeIndex: '4',
         ruleForm: {
           name: '',
           date1: '',
           date2: '',
           isopen: false,
           content: '',
-		  dairy_type: 'pill'
+		  dairy_type: 'pill',
+		  islogin:true,
+		  username:''
         },
         rules: {
           name: [
@@ -92,7 +104,39 @@
         }
       };
     },
+	created: function() {
+		  var _this = this
+		  axios.post("http://localhost:8000/login/", '').then(
+		  	function(resp) {
+		  		console.log(resp.data)
+		  		console.log("122222222222222222222222")
+				if(resp.data.request == 'Have Login'){
+					_this.islogin = true
+					_this.username = resp.data.user_name
+				}
+		  		// _this.set_user_id(resp.data.user_id)
+		  		console.log(_this.islogin)
+		  	}
+		  )
+	},
     methods: {
+		logout(){
+			var _this = this
+			axios.get("http://localhost:8000/logout/", '').then(
+				function(resp) {
+					console.log(resp.data)
+					_this.$notify({
+					  title: "注销成功!",
+					  type: "success",
+					  message:
+					    "谢谢!",
+					  duration: 5000,
+					});
+					_this.islogin = false
+					_this.username = ''
+				}
+			)
+		},
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {

@@ -3,10 +3,19 @@
 		<el-container>
 			<el-header>
 
-				<el-menu :default-active="activeIndex" mode="horizontal">
-					<el-menu-item index="1" @click="goTo('/')">首页</el-menu-item>
-					<el-menu-item index="2" @click="goTo('home')">胶囊广场</el-menu-item>
-				</el-menu>
+<el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
+<el-menu-item >
+<div class="index-title"><i class="el-icon-edit"></i>时光胶囊</div>
+</el-menu-item>
+<el-menu-item index="1" @click="goTo('/')">首页</el-menu-item>
+<el-menu-item index="2" @click="goTo('home')">胶囊广场</el-menu-item>
+<el-menu-item index="3" @click="goTo('edit_pre')" v-if="islogin">写日记</el-menu-item>
+<el-menu-item index="4" @click="goTo('edit_pill')" v-if="islogin">写胶囊</el-menu-item>
+<el-menu-item index="5" @click="goTo('reg')" v-if="!islogin">注册</el-menu-item>
+<el-menu-item index="6" @click="goTo('login')" v-if="!islogin">登录</el-menu-item>
+<el-menu-item index="7" @click="" v-if="islogin">Hello,{{username}}!</el-menu-item>
+<el-menu-item index="8" @click="logout()" v-if="islogin">登出</el-menu-item>
+</el-menu>
 			</el-header>
 			<el-main>
 				<div>
@@ -64,7 +73,7 @@
 						<el-col :span="8" class="margin" v-for="article in mypills">
 							<el-card class="box-card" shadow="hover">
 								<div slot="header" class="clearfix">
-									<span>{{article.title}}{{article.diary_type}}</span>
+									<span>{{article.title}}</span>
 									<el-button style="float: right; padding: 3px 0" type="text" @click="toArticle(article.diary_type,article.id)">查看详情</el-button>
 								</div>
 								<!-- <el-tag>{{article.diary_type == 'pill' ? '普通日记' : '胶囊日记'}}</el-tag> -->
@@ -113,7 +122,9 @@
 				activeIndex: '2',
 				squaredata:[],
 				myarticles:[],
-				mypills:[]
+				mypills:[],
+				islogin:false,
+				username:''
 			};
 		},
 		methods: {
@@ -138,9 +149,39 @@
 					  duration: 2000,
 					});
 				}
+			},
+			logout(){
+				var _this = this
+				axios.get("http://localhost:8000/logout/", '').then(
+					function(resp) {
+						console.log(resp.data)
+						_this.$notify({
+						  title: "注销成功!",
+						  type: "success",
+						  message:
+						    "谢谢!",
+						  duration: 5000,
+						});
+						_this.islogin = false
+						_this.username = ''
+					}
+				)
+				this.$router.push('/');
 			}
 		},
 		created: function() {
+			axios.post("http://localhost:8000/login/", '').then(
+				function(resp) {
+					console.log(resp.data)
+					console.log("122222222222222222222222")
+						if(resp.data.request == 'Have Login'){
+							_this.islogin = true
+							_this.username = resp.data.user_name
+						}
+					// _this.set_user_id(resp.data.user_id)
+					console.log(_this.islogin)
+				}
+			),
 			console.log("NB")
 			var _this = this
 			axios.get("http://localhost:8000/articles/", '').then(
