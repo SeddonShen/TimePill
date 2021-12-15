@@ -55,6 +55,9 @@
 				<div style="padding: 20px;">
 					<div style="font-size: 30px; text-align: center;">{{article.title}}</div>
 				</div>
+				<div style="text-align: left;font-size: 1.25rem;margin-bottom: 1.25rem;">
+					<span>胶囊内容:</span>
+				</div>
 				<!-- {{article.square_open ? '' : 'text-align: center;'}} -->
 				<div style="text-align: center;" v-if="!article.status">
 					<!-- content -->

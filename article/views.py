@@ -348,7 +348,8 @@ def show_comment(request, art_id):
                     'comment_content': comment.comment_content,
                     'comment_author': comment.comment_author.name,
                     'comment_time': comment.comment_time,
-                    'pre_comment': None
+                    'pre_comment': None,
+                    'author_id':comment.comment_author.id
                 }
             else:
                 comment_dict = {
@@ -356,7 +357,8 @@ def show_comment(request, art_id):
                     'comment_content': comment.comment_content,
                     'comment_author': comment.comment_author.name,
                     'comment_time': comment.comment_time,
-                    'pre_comment': comment.pre_comment.id
+                    'pre_comment': comment.pre_comment.id,
+                    'author_id': comment.comment_author.id
                 }
             comments_show.append(comment_dict)
             # print(comment.id,
