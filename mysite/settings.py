@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'captcha',
     'corsheaders',
     'article'
-
 ]
 
 MIDDLEWARE = [

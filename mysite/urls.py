@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from login import views
 from article.views import add_article, modify_article, myarticles, mypills, articledetail, pilldetail
-
+from article.views import pron
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', views.index),
@@ -31,5 +31,6 @@ urlpatterns = [
     path('myarticles/', myarticles),
     path('mypills/', mypills),
     path('articledetail/<int:art_id>', articledetail),
-    path('pilldetail/<int:art_id>', pilldetail)
+    path('pilldetail/<int:art_id>', pilldetail),
+    path('pron/', pron)
 ]

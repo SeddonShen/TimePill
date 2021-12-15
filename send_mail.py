@@ -18,11 +18,11 @@ if __name__=='__main__':
     #     ['18768755688@163.com'],
     #     fail_silently=False,
     # )
-    subject= '来自naughoy'
-    from_email='1083559808@qq.com'
-    to='18768755688@163.com'
-    text_content = '欢迎访问www.naughoy.com'
-    html_content = '<p>欢迎访问<a href="http://www.liujiangblog.com" target=blank>www.liujiangblog.com</a>，这里是刘江的博客和教程站点</p>'
+    subject= '来自Seddon'
+    from_email='npumow@163.com'
+    to='283481855@163.com'
+    text_content = '欢迎访问TimePill'
+    html_content = '<p>欢迎访问<a href="http://www.baidu.com" target=blank>www.baidu.com</a>，这里是TimePill</p>'
     msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
     msg.attach_alternative(html_content, "text/html")
     msg.send()

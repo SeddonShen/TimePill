@@ -5,6 +5,7 @@ from login.models import User
 from django.db.models import Q
 import django.utils.timezone as timezone
 import json
+from django.conf import settings
 
 
 def add_article(request):
@@ -91,7 +92,7 @@ def add_article(request):
 def modify_article(request, art_id):
     print('ssd', request.method)
     print('modify_article')
-    print(request.method,art_id)
+    print(request.method, art_id)
     if request.method == "POST":
         if request.session.get('is_login', None):
             user_id = request.session.get('user_id', None)
@@ -176,7 +177,8 @@ def myarticles(request):
             # print(query_art.__dict__)
             for article in query_art:
                 article_dict = {'id': article.id, 'title': article.title, 'content': article.content,
-                                'status': article.status, 'author': article.author_id.name, 'diary_type': article.diary_type}
+                                'status': article.status, 'author': article.author_id.name,
+                                'diary_type': article.diary_type}
                 articles.append(article_dict)
             return JsonResponse({"status": "200", "articles": articles, "msg": "query user articles success."},
                                 safe=False)
@@ -198,10 +200,12 @@ def mypills(request):
             for article in query_art:
                 if (article.status):
                     article_dict = {'id': article.id, 'title': article.title, 'content': article.content,
-                                    'status': article.status, 'author': article.author_id.name, 'diary_type': article.diary_type}
+                                    'status': article.status, 'author': article.author_id.name,
+                                    'diary_type': article.diary_type}
                 else:
                     article_dict = {'id': article.id, 'title': '未解封的胶囊', 'content': '耐心等待',
-                                    'status': article.status, 'author': article.author_id.name, 'diary_type': article.diary_type}
+                                    'status': article.status, 'author': article.author_id.name,
+                                    'diary_type': article.diary_type}
                 articles.append(article_dict)
             return JsonResponse({"status": "200", "articles": articles, "msg": "query user articles success."},
                                 safe=False)
@@ -230,7 +234,7 @@ def articledetail(request, art_id):
                                 'author': article.author_id.name,
                                 'add_date': article.add_date,
                                 'mod_date': article.mod_date
-                }
+                                }
                 return JsonResponse({"status": "200", "article": article_dict, "msg": "list pill detail success."},
                                     safe=False)
             else:
@@ -251,7 +255,7 @@ def pilldetail(request, art_id):
             article = Article.objects.get(id=art_id)
             if user_id == article.author_id.id:
                 print(request.session.get('user_name', None))
-                if(article.status):
+                if (article.status):
                     article_dict = {'id': article.id,
                                     'title': article.title,
                                     'content': article.content,
@@ -262,7 +266,7 @@ def pilldetail(request, art_id):
                                     'author': article.author_id.name,
                                     'add_date': article.add_date,
                                     'mod_date': article.mod_date
-                    }
+                                    }
                 else:
                     article_dict = {'id': article.id,
                                     'title': article.title,
@@ -274,7 +278,7 @@ def pilldetail(request, art_id):
                                     'author': article.author_id.name,
                                     'add_date': article.add_date,
                                     'mod_date': article.mod_date
-                    }
+                                    }
                 return JsonResponse({"status": "200", "article": article_dict, "msg": "list pill detail success."},
                                     safe=False)
             else:
@@ -282,4 +286,38 @@ def pilldetail(request, art_id):
 
         else:
             return JsonResponse({"status": "404", "msg": "please log in."})
+    return JsonResponse({"status": "405", "msg": "unknown error."})
+
+
+# 邮件发送
+def send_mail(email):
+    from django.core.mail import EmailMultiAlternatives
+    subject = '您有时间胶囊到期啦'
+
+    text_content = '''感谢使用l时间胶囊\
+                        如果你看到这条消息，说明你的邮箱服务器不提供HTML链接功能，请联系管理员！'''
+
+    html_content = '''
+                <p>感谢使用时间胶囊！</p>
+                <p>请回到时间胶囊TimePill官网查看到期的胶囊信息！</p>
+                    '''
+    msg = EmailMultiAlternatives(subject, text_content, settings.EMAIL_HOST_USER, [email])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
+
+
+def pron(request):
+    # 查询所有文章和状态
+    if request.method == "GET":
+        '''查找数据'''
+        query_art = Article.objects.filter(Q(diary_type='pill') & Q(status=False))
+        articles = []
+        for article in query_art:
+            # is pill and status is false
+            # send_mail('283481855@qq.com')
+            # print(article.__dict__)
+            print(article.author_id.email)
+        # article.status = True
+        # article.save()
+        return JsonResponse({"status": "200", "msg": "pron task run success."})
     return JsonResponse({"status": "405", "msg": "unknown error."})
