@@ -64,9 +64,9 @@
 					<!-- content -->
 					{{article.content}}
 				</div>
-				<div style="text-align: center;">
+				<!-- <div style="text-align: center;">
 					<comment></comment>
-				</div>
+				</div> -->
 			</el-main>
 			<el-footer class="bg-footer">
 				 
@@ -93,15 +93,15 @@
 <script>
 	import axios from 'axios'
 	import Qs from 'qs'
-	import comment from 'bright-comment'
+	// import comment from 'bright-comment'
 	// // components:{
 	// //   comment
 	// // },
 	axios.defaults.withCredentials = true; //让ajax携带cookie
 	export default {
-		components:{
-		  comment
-		},
+		// components:{
+		//   comment
+		// },
 		data() {
 			return {
 				activeIndex: '2',
