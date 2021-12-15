@@ -310,13 +310,18 @@ def pron(request):
     # 查询所有文章和状态
     if request.method == "GET":
         '''查找数据'''
-        query_art = Article.objects.filter(Q(diary_type='pill') & Q(status=False))
+        query_art = Article.objects.filter(Q(diary_type='pill') & Q(status=False) & Q(expire_time__lt=timezone.now() ))
         articles = []
         for article in query_art:
             # is pill and status is false
-            # send_mail('283481855@qq.com')
             # print(article.__dict__)
-            print(article.author_id.email)
+            # print(article.author_id.email)
+            print(article.expire_time)
+            send_mail(article.author_id.email)
+            article.status = True
+            article.save()
+        # now = timezone.now()
+        # print(now)
         # article.status = True
         # article.save()
         return JsonResponse({"status": "200", "msg": "pron task run success."})
