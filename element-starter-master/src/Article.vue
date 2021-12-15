@@ -162,6 +162,17 @@
 					// _this.article = result
 				}
 			)
+			//123
+			axios.get("http://localhost:8000/comments/" + this.id, '').then(
+				function(resp) {
+					console.log("--------------test-----------")
+					console.log(resp)
+					// _this.article = resp.data.article
+					// console.log(resp.data.articles)
+					// const result = resp.data.articles
+					// _this.article = result
+				}
+			)
 		},
 	}
 </script>

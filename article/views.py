@@ -340,15 +340,33 @@ def show_comment(request, art_id):
         # comments = Comment.objects.filter(article=Article.objects.get(id=art_id))
         comments = Comment.objects.filter(article=art_id)
         print(comments.__dict__)
+        comments_show = []
         for comment in comments:
-            print(comment.id,
-                  comment.article.id,
-                  comment.comment_content,
-                  comment.comment_author,
-                  comment.comment_time,
-                  comment.pre_comment
-                  )
-            return JsonResponse({"status": "200", "msg": "query success."})
+            if comment.pre_comment is None:
+                comment_dict = {
+                    'id': comment.id,
+                    'comment_content': comment.comment_content,
+                    'comment_author': comment.comment_author.name,
+                    'comment_time': comment.comment_time,
+                    'pre_comment': None
+                }
+            else:
+                comment_dict = {
+                    'id': comment.id,
+                    'comment_content': comment.comment_content,
+                    'comment_author': comment.comment_author.name,
+                    'comment_time': comment.comment_time,
+                    'pre_comment': comment.pre_comment.id
+                }
+            comments_show.append(comment_dict)
+            # print(comment.id,
+            #       comment.article.id,
+            #       comment.comment_content,
+            #       comment.comment_author,
+            #       comment.comment_time,
+            #       comment.pre_comment
+            # )
+        return JsonResponse({"status": "200", "comments": comments_show, "msg": "query success."})
     return JsonResponse({"status": "405", "msg": "unknown error."})
 
 
@@ -356,7 +374,8 @@ def add_comment(request, art_id):
     if request.method == "POST":
         # if True:
         if request.session.get('is_login', None):
-            user_id = 1
+            # user_id = 1
+            user_id = request.session.get('user_id', None)
             print(user_id)
             # print(request.session.get('user_name', None))
             req = json.loads(request.body)
@@ -393,10 +412,10 @@ def modify_comment(request, comm_id):
     print(request.method, comm_id)
     # 删除Comment
     if request.method == "DELETE":
-        if True:
-        # if request.session.get('is_login', None):
-            # user_id = request.session.get('user_id', None)
-            user_id = 1
+        # if True:
+        if request.session.get('is_login', None):
+            user_id = request.session.get('user_id', None)
+            # user_id = 1
             print(user_id)
             print(request.session.get('user_name', None))
             try:
