@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from login import views
-from article.views import add_article, modify_article, myarticles, mypills, articledetail, pilldetail
+from article.views import add_article, modify_article, myarticles, mypills, articledetail, pilldetail, show_comment, modify_comment, add_comment
 from article.views import pron
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,5 +32,8 @@ urlpatterns = [
     path('mypills/', mypills),
     path('articledetail/<int:art_id>', articledetail),
     path('pilldetail/<int:art_id>', pilldetail),
-    path('pron/', pron)
+    path('pron/', pron),
+    path('comments/<int:art_id>', show_comment),
+    path('del_com/<int:comm_id>', modify_comment),
+    path('add_comment/<int:art_id>', add_comment)
 ]
