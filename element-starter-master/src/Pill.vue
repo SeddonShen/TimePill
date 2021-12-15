@@ -11,7 +11,7 @@
 				
 				<el-descriptions class="margin-top" :column="3" border>
 						<template slot="extra">
-					      <el-button type="primary" size="small" @click="toArticle(article.id)">编辑</el-button>
+					      <!-- <el-button type="primary" size="small" @click="toArticle(article.id)">编辑</el-button> -->
 					      <el-button type="danger" size="small" @click="art_delete(article.id)" >删除</el-button>
 					    </template>
 					<el-descriptions-item>
