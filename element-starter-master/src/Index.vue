@@ -40,6 +40,7 @@
     </el-main>
 
       <el-footer class="bg-footer">
+		   <!-- <comment></comment> -->
         <div class="footer-title">时光胶囊 © 2021 - 2021 All Copyright reserved</div>
       </el-footer>
   </el-container>
@@ -51,7 +52,12 @@
 
 <script>
 import {store} from './store.js'
+// import comment from 'hbl-comment'
+
 export default {
+	// components:{
+	//   comment
+	// },
   data() {
       return {
         activeIndex: '1',

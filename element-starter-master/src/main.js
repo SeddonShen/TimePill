@@ -11,6 +11,9 @@ import Editor_pill from './Editor_pill.vue'
 import Editor_pre from './Editor_pre.vue'
 import Article from './Article.vue'
 import Pill from './Pill.vue'
+import comment from 'bright-comment'
+// import comment from 'hbl-comment'
+
 
 Vue.use(ElementUI)
 Vue.use(VueRouter)
@@ -56,4 +59,8 @@ new Vue({
   //让vue知道我们的路由规则
   router: router, //可以简写router
   render: c => c(App),
+  components:{
+		comment
+  },
 })
+// Vue.component('comment', { /* ... */ })

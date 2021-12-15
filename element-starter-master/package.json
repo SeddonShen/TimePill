@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
+    "bright-comment": "^1.5.7",
     "element-ui": "^2.15.6",
+    "hbl-comment": "^1.2.3",
     "qs": "^6.10.2",
     "vue": "^2.5.16",
     "vue-router": "^3.5.3"
