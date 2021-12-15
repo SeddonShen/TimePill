@@ -64,10 +64,11 @@
 						<el-col :span="8" class="margin" v-for="article in mypills">
 							<el-card class="box-card" shadow="hover">
 								<div slot="header" class="clearfix">
-									<span>{{article.title}}</span>
+									<span>{{article.title}}{{article.diary_type}}</span>
 									<el-button style="float: right; padding: 3px 0" type="text" @click="toArticle(article.diary_type,article.id)">查看详情</el-button>
 								</div>
 								<!-- <el-tag>{{article.diary_type == 'pill' ? '普通日记' : '胶囊日记'}}</el-tag> -->
+								
 								<el-tag size="small" v-if="article.diary_type == 'pill' ">胶囊日记</el-tag>
 								<el-tag size="small" type="success" v-if="article.diary_type !== 'pill' ">普通日记</el-tag>
 								<div class="text item">
@@ -168,6 +169,8 @@
 					console.log(resp.data.articles)
 					const result = resp.data.articles
 					_this.mypills = result
+					console.log("attation")
+					console.log(_this.mypills)
 				}
 			)
 			

@@ -103,19 +103,21 @@ def modify_article(request, art_id):
                 key_flag = req.get("title") and req.get("content") and len(req) == 4
                 print(len(req))
                 if user_id == article.author_id.id:
-                    print('hello0')
+                    # print('hello0')
                     if key_flag:
-                        print('hello1')
+                        # print('hello1')
                         title = req["title"]
                         content = req["content"]
                         square_open = req["square_open"]
                         '''更新数据'''
                         article = Article.objects.get(id=art_id)
+                        if article.diary_type == 'pill':
+                            return JsonResponse({"status": "409", "msg": "is your pill."})
                         article.title = title
                         article.content = content
                         article.square_open = square_open
                         article.save()
-                        print('hello2')
+                        # print('hello2')
                         return JsonResponse({"status": "200", "msg": "modify article success."})
                 else:
                     return JsonResponse({"status": "406", "msg": "not your article."})
@@ -174,7 +176,7 @@ def myarticles(request):
             # print(query_art.__dict__)
             for article in query_art:
                 article_dict = {'id': article.id, 'title': article.title, 'content': article.content,
-                                'status': article.status, 'author': article.author_id.name}
+                                'status': article.status, 'author': article.author_id.name, 'diary_type': article.diary_type}
                 articles.append(article_dict)
             return JsonResponse({"status": "200", "articles": articles, "msg": "query user articles success."},
                                 safe=False)
@@ -196,10 +198,10 @@ def mypills(request):
             for article in query_art:
                 if (article.status):
                     article_dict = {'id': article.id, 'title': article.title, 'content': article.content,
-                                    'status': article.status, 'author': article.author_id.name}
+                                    'status': article.status, 'author': article.author_id.name, 'diary_type': article.diary_type}
                 else:
                     article_dict = {'id': article.id, 'title': '未解封的胶囊', 'content': '耐心等待',
-                                    'status': article.status, 'author': article.author_id.name}
+                                    'status': article.status, 'author': article.author_id.name, 'diary_type': article.diary_type}
                 articles.append(article_dict)
             return JsonResponse({"status": "200", "articles": articles, "msg": "query user articles success."},
                                 safe=False)
