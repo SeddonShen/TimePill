@@ -161,7 +161,7 @@ def register(request):
             new_user.save()
             code = make_confirm_string(new_user)
             send_mail(email, code)
-            return JsonResponse({'request': 'reg ok'})
+            return JsonResponse({'request': '注册成功，请验证邮箱！'})
             # return redirect('/login/')
         else:
             return render(request, 'login/register.html', locals())
@@ -180,7 +180,8 @@ def user_confirm(request):
 
     c_time = confirm.c_time
     now = datetime.datetime.now()
-    if now > c_time + datetime.timedelta(settings.CONFIRM_DAYS):
+    # if now > c_time + datetime.timedelta(settings.CONFIRM_DAYS):
+    if False:
         confirm.user.delete()
         message = '您的邮件验证已经过期！请重新注册！'
         return render(request, 'login/confirm.html', locals())
