@@ -1,8 +1,10 @@
 # TimePill
 A Django Project to make a timepill.（时间胶囊）
-打算数据库实验复刻一下这个项目，目前还在写
+打算数据库实验复刻一下这个项目，作业已经完成
 
+```
 python manage.py runserver
+```
 
 # 思路
 
@@ -32,4 +34,7 @@ Vue使用中主要遇到的问题是跨域了，加油加油
 
 ## 定时任务依赖
 
-pip install django-crontab
+run ./pron 路径
+
+## 具体实现
+见实验报告&说明文档
