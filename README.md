@@ -5,7 +5,8 @@ A Django Project to make a timepill.（时间胶囊）
 ```
 python manage.py runserver
 ```
-
+## 架构
+Django + Vue 前后端分离
 # 思路
 
 用户表
