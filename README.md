@@ -1,6 +1,7 @@
 # TimePill
 A Django Project to make a timepill.（时间胶囊）
-打算数据库实验复刻一下这个项目，作业已经完成
+西北工业大学计算机学院数据库原理实验课程优秀大作业（2021年）
+打算数据库实验复刻一下这个项目，作业已经完成。详见实验文档
 
 ```
 python manage.py runserver
